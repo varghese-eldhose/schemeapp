@@ -110,12 +110,15 @@ class SchemePage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 5),
                       Container(
-                        child: Text('${scheme.description}'),
+                        child: Text(
+                          '${scheme.description}',
+                          style: TextStyle(color: Colors.grey[800]),
+                        ),
                       ),
                       GestureDetector(
                         onTap: () {
