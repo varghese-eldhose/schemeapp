@@ -4,7 +4,7 @@ import 'package:schemeapp/screens/user/admin.dart';
 import 'package:schemeapp/screens/user/homepage.dart';
 import 'package:schemeapp/screens/user/loginpage.dart';
 import 'package:schemeapp/screens/user/splash.dart';
-import 'package:schemeapp/views/newScheme.dart';
+import 'package:schemeapp/views/Mysche.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignupPage(),
+      home: SplashPage(),
     );
   }
 }

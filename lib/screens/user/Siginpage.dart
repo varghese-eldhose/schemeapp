@@ -1,244 +1,201 @@
 import 'package:flutter/material.dart';
-import 'package:schemeapp/screens/user/loginpage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class SignupPage extends StatefulWidget {
-  @override
-  _SignupPageState createState() => _SignupPageState();
+import 'package:schemeapp/screens/user/loginpage.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Siginup(),
+  ));
 }
 
-class _SignupPageState extends State<SignupPage> {
+class Siginup extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<Siginup> {
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  final TextEditingController emailcontroller = TextEditingController();
-  final TextEditingController pincontroller = TextEditingController();
-  final TextEditingController addrescontroller = TextEditingController();
-  DateTime selectedDate = DateTime.now();
-  bool visibility = false;
-  bool confirmPasswordvisibilit = false;
+  final TextEditingController jobController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
+
+  List<String> jobList = ['Farmer', 'Student', 'Disabled', 'Other'];
+  // List<String> ageList = ['18-25', '26-35', '36-50', '51+'];
+  List<String> genderlist = ["Male", "Female"];
+
+  Future<void> postData() async {
+    final String url =
+        'http://10.0.2.2:8000/AdminUI/register/'; // Replace with your API endpoint
+
+    // final Map<String, String> data = {
+    //   'username': usernameController.text,
+    //   'email': emailController.text,
+    //   'password': passwordController.text,
+    //   'profession': jobController.text,
+    //   'age': ageController.text,
+    // };
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type':
+            'application/x-www-form-urlencoded', // Adjust the content type if needed
+      },
+      body: {
+        'username': usernameController.text.trim(),
+        'email': emailController.text.trim(),
+        'password': passwordController.text.trim(),
+        'age': ageController.text.trim(),
+        'profession': jobController.text.trim(),
+        'gender': genderController.text.trim()
+      },
+    );
+    if (response.statusCode == 201) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginPage(),
+          ));
+      print("success");
+    } else {
+      print(response.statusCode);
+      print("Error");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
               image: NetworkImage(
-                  "https://images.unsplash.com/photo-1699976103128-ae05b6257fab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8fA%3D%3D"),
-              fit: BoxFit.cover),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(40.0),
-              child: Column(children: [
-                Icon(
-                  Icons.person,
-                  size: 48.0,
-                  color: Colors.black,
-                ),
-                Text(
-                  'Welcome to registration',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ]),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  labelText: 'Username',
-                  hintText: 'Enter your username',
-                  prefixIcon: Icon(Icons.person),
-                  suffixIcon: Icon(Icons.check_circle),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  contentPadding: EdgeInsets.all(12.0),
-                ),
+                "https://images.unsplash.com/photo-1613125700782-8394bec3e89d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
               ),
+              fit: BoxFit.fill,
             ),
-            SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: passwordController,
-                obscureText: !visibility,
-                decoration: InputDecoration(
-                    labelText: 'Password',
-                    hintText: 'enter your password',
-                    prefixIcon: Icon(Icons.password),
-                    suffixIcon: IconButton(
-                        icon: Icon(
-                          visibility ? Icons.visibility : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            visibility = !visibility;
-                          });
-                        }),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Sign in",
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    contentPadding: EdgeInsets.all(12.0)),
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: TextField(
-                controller: confirmPasswordController,
-                obscureText: !confirmPasswordvisibilit,
-                decoration: InputDecoration(
-                    labelText: 'confirm password',
-                    helperText: 'reenter password',
-                    prefixIcon: Icon(Icons.password),
-                    suffixIcon: IconButton(
-                      icon: Icon(confirmPasswordvisibilit
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                      onPressed: () {
-                        setState(() {
-                          confirmPasswordvisibilit = !confirmPasswordvisibilit;
-                        });
-                      },
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    contentPadding: EdgeInsets.all(12.0)),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: emailcontroller,
-                decoration: InputDecoration(
-                  labelText: 'email',
-                  hintText: 'Enter your email',
-                  prefixIcon: Icon(Icons.person),
-                  suffixIcon: Icon(Icons.check_circle),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    height: 50,
+                    color: Colors.transparent,
+                    width: double.maxFinite,
                   ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  contentPadding: EdgeInsets.all(12.0),
-                ),
-                validator:  (value) {
-    if (value == null || !value.endsWith("@gmail.com")) {
-      return 'Please enter a valid email address ending with "@gmail.com"';
-    }
-    return null;
-  },
-              ),
-            ),
-            
-            SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: addrescontroller,
-                decoration: InputDecoration(
-                  labelText: 'Address',
-                  hintText: 'Enter your Adress',
-                  prefixIcon: Icon(Icons.person),
-                  suffixIcon: Icon(Icons.check_circle),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                  SizedBox(
+                    height: 100,
                   ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  contentPadding: EdgeInsets.all(12.0),
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: pincontroller,
-                decoration: InputDecoration(
-                  labelText: 'pincode',
-                  hintText: 'Enter your pincode',
-                  prefixIcon: Icon(Icons.person),
-                  suffixIcon: Icon(Icons.check_circle),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                  TextField(
+                    controller: usernameController,
+                    decoration: InputDecoration(
+                        labelText: 'Username',
+                        labelStyle: TextStyle(color: Colors.black)),
                   ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  contentPadding: EdgeInsets.all(12.0),
-                ),
+                  SizedBox(height: 16),
+                  TextField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: TextStyle(color: Colors.black)),
+                  ),
+                  SizedBox(height: 16),
+                  TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: TextStyle(color: Colors.black)),
+                    obscureText: true,
+                  ),
+                  SizedBox(height: 16),
+                  DropdownTextField(
+                    controller: jobController,
+                    items: jobList,
+                    hintText: 'Select Job',
+                  ),
+                  SizedBox(height: 16),
+                  DropdownTextField(
+                    controller: genderController,
+                    items: genderlist,
+                    hintText: 'Select gender',
+                  ),
+                  SizedBox(height: 16),
+                  TextField(
+                    controller: ageController,
+                    decoration: InputDecoration(
+                        labelText: 'Age',
+                        labelStyle: TextStyle(color: Colors.black)),
+                    obscureText: false,
+                  ),
+                  SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: () {
+                      postData();
+                    },
+                    child: Text('Post Data'),
+                  ),
+                ],
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                storeDataAndNavigate();
-              },
-              child: Text('Signup'),
-            ),
-          ],
+          ),
         ),
       ),
-    ));
+    );
   }
+}
 
-  void storeDataAndNavigate() async {
-    String username = usernameController.text.trim();
-    String password = passwordController.text.trim();
-    String confirmPassword = confirmPasswordController.text.trim();
-    String Email = emailcontroller.text.trim();
-    String Pincode = pincontroller.text.trim();
-    String Adress = addrescontroller.text.trim();
+class DropdownTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final List<String> items;
+  final String hintText;
 
-    if (password == confirmPassword) {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
+  const DropdownTextField({
+    Key? key,
+    required this.controller,
+    required this.items,
+    required this.hintText,
+  }) : super(key: key);
 
-      preferences.setString('username', username);
-      preferences.setString('password', password);
-      preferences.setString('email', Email);
-      preferences.setString('pincode', Pincode);
-      preferences.setString('Addres', Adress);
-
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => LoginPage()),
-      );
-    } else {
-      showErrorDialog('Password dont match');
-    }
-  }
-
-  void showErrorDialog(String errorMessage) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('error'),
-            content: Text(errorMessage),
-            actions: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('ok'))
-            ],
-          );
-        });
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: hintText,
+        suffixIcon: PopupMenuButton<String>(
+          icon: const Icon(Icons.arrow_drop_down),
+          onSelected: (value) {
+            controller.text = value;
+          },
+          itemBuilder: (BuildContext context) {
+            return items.map<PopupMenuItem<String>>((String value) {
+              return PopupMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList();
+          },
+        ),
+      ),
+    );
   }
 }
