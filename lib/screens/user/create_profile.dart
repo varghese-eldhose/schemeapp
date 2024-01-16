@@ -5,17 +5,17 @@ import 'package:get/get_core/src/get_main.dart';
 // import 'package:scheme_app/controller/profile_controller.dart';
 // import 'package:scheme_app/dump/pro_cont.dart';
 import 'package:schemeapp/screens/user/Siginpage.dart';
-import 'package:schemeapp/screens/user/edit_profile.dart';
+import 'package:schemeapp/screens/user/profile_controller.dart';
 import 'package:schemeapp/screens/user/home.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Profile(),
+    home: CreateProfile(),
   ));
 }
 
-class Profile extends StatelessWidget {
-  Profile({super.key});
+class CreateProfile extends StatelessWidget {
+  CreateProfile({super.key});
 
   final ProfileController _profileController = ProfileController();
 
@@ -56,19 +56,7 @@ class Profile extends StatelessWidget {
                       height: 20,
                     ),
 
-                    // Container(
-                    //   padding: EdgeInsets.symmetric(horizontal: 10),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.white70,
-                    //   ),
-                    //   child: TextField(
-                    //     controller: _profileController.userController,
-                    //     decoration: InputDecoration(
-                    //       isDense: true,
-                    //       labelText: 'User',
-                    //     ),
-                    //   ),
-                    // ),
+
                     SizedBox(height: 16),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),

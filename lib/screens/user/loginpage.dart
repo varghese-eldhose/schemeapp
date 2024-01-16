@@ -133,13 +133,15 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:schemeapp/screens/Adminpage.dart';
+import 'package:schemeapp/screens/admin/admin_schme_page.dart';
 import 'package:schemeapp/screens/user/Siginpage.dart';
 import 'package:schemeapp/screens/user/home.dart';
 import 'package:schemeapp/screens/user/homepage.dart';
-import 'package:schemeapp/screens/user/profiledisplay.dart';
+import 'package:schemeapp/screens/user/create_profile.dart';
 import 'package:schemeapp/service/filter_scheme_serrvice.dart';
-// import 'package:schemeapp/views/scheme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -173,12 +175,17 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('accessToken', accessToken);
       prefs.setInt('user_id', user_id);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Profile(),
-        ),
-      );
+      Get.to(CreateProfile());
+
+      print(response.body);
+      if (_usernameController.text == 'admin' &&
+          _passwordController.text == 'admin')
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => AdminScheme(),
+        //     ));
+        Get.to(AdminScheme());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -190,55 +197,131 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-                "https://images.unsplash.com/photo-1613125700782-8394bec3e89d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
-            fit: BoxFit.cover,
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("asset/img.jpeg"),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // SizedBox(
+                //   height: 65,
+                // ),
+                Container(
+                  alignment: Alignment.center,
+                  color: Colors.grey[200],
+                  height: 70,
+                  width: 500,
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff37674f),
+                    ),
+                  ),
                 ),
-              ),
-              TextField(
-                controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Username'),
-              ),
-              SizedBox(height: 16),
-              TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
-              ),
-              SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: login,
-                child: Text('Login'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Siginup(),
-                  ));
-                },
-                child: Text(
-                  "Don't have an account? Sign in",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                SizedBox(
+                  height: 100,
                 ),
-              ),
-            ],
+                // TextField(
+                //   controller: _usernameController,
+                //   decoration: InputDecoration(labelText: 'Username'),
+                // ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: Color(0xff37674f),
+                  ),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white),
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      labelText: 'Username',
+                      labelStyle: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 16),
+                // TextField(
+                //   controller: _passwordController,
+                //   obscureText: true,
+                //   decoration: InputDecoration(labelText: 'Password'),
+                // ),
+                // SizedBox(height: 24),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: Color(0xff37674f),
+                  ),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white),
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      labelText: 'Password',
+                      labelStyle: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 70))),
+                  onPressed: login,
+                  child: Text(
+                    'Login',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Siginup(),
+                    ));
+                  },
+                  child: Card(
+                    color: Colors.transparent,
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Don't have an account?",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () => Get.to(Siginup()),
+                              child: Text(
+                                "Sign up",
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

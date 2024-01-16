@@ -76,9 +76,7 @@ class _MyHomePageState extends State<Siginup> {
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(
-                "https://images.unsplash.com/photo-1613125700782-8394bec3e89d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-              ),
+              image: AssetImage("asset/img.jpeg"),
               fit: BoxFit.fill,
             ),
           ),
@@ -87,64 +85,137 @@ class _MyHomePageState extends State<Siginup> {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     alignment: Alignment.center,
+                    color: Colors.grey[200],
+                    height: 70,
+                    width: 500,
                     child: Text(
-                      "Sign in",
+                      'Sigin up',
                       style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff37674f),
+                      ),
                     ),
-                    height: 50,
-                    color: Colors.transparent,
-                    width: double.maxFinite,
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 90,
                   ),
-                  TextField(
-                    controller: usernameController,
-                    decoration: InputDecoration(
+                  // TextField(
+                  //   controller: usernameController,
+                  //   decoration: InputDecoration(
+                  //       labelText: 'Username',
+                  //       labelStyle: TextStyle(color: Colors.black)),
+                  // ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Color(0xff37674f),
+                    ),
+                    child: TextField(
+                      style: TextStyle(color: Colors.white),
+                      controller: usernameController,
+                      decoration: InputDecoration(
+                        isDense: true,
                         labelText: 'Username',
-                        labelStyle: TextStyle(color: Colors.black)),
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 16),
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
+                  // TextField(
+                  //   controller: emailController,
+                  //   decoration: InputDecoration(
+                  //       labelText: 'Email',
+                  //       labelStyle: TextStyle(color: Colors.black)),
+                  // ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Color(0xff37674f),
+                    ),
+                    child: TextField(
+                      style: TextStyle(color: Colors.white),
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        isDense: true,
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.black)),
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 16),
-                  TextField(
-                    controller: passwordController,
-                    decoration: InputDecoration(
+                  // TextField(
+                  //   controller: passwordController,
+                  //   decoration: InputDecoration(
+                  //       labelText: 'Password',
+                  //       labelStyle: TextStyle(color: Colors.black)),
+                  //   obscureText: true,
+                  // ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Color(0xff37674f),
+                    ),
+                    child: TextField(
+                      style: TextStyle(color: Colors.white),
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        isDense: true,
                         labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.black)),
-                    obscureText: true,
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 16),
-                  DropdownTextField(
-                    controller: jobController,
-                    items: jobList,
-                    hintText: 'Select Job',
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Color(0xff37674f),
+                    ),
+                    child: DropdownTextField(
+                      controller: jobController,
+                      items: jobList,
+                      hintText: 'Select Job',
+                    ),
                   ),
                   SizedBox(height: 16),
-                  DropdownTextField(
-                    controller: genderController,
-                    items: genderlist,
-                    hintText: 'Select gender',
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Color(0xff37674f),
+                    ),
+                    child: DropdownTextField(
+                      controller: genderController,
+                      items: genderlist,
+                      hintText: 'Select gender',
+                    ),
                   ),
                   SizedBox(height: 16),
-                  TextField(
-                    controller: ageController,
-                    decoration: InputDecoration(
+                  // TextField(
+                  //   controller: ageController,
+                  //   decoration: InputDecoration(
+                  //       labelText: 'Age',
+                  //       labelStyle: TextStyle(color: Colors.black)),
+                  //   obscureText: false,
+                  // ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Color(0xff37674f),
+                    ),
+                    child: TextField(
+                      style: TextStyle(color: Colors.white),
+                      controller: ageController,
+                      decoration: InputDecoration(
+                        isDense: true,
                         labelText: 'Age',
-                        labelStyle: TextStyle(color: Colors.black)),
-                    obscureText: false,
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 32),
                   ElevatedButton(
@@ -152,6 +223,18 @@ class _MyHomePageState extends State<Siginup> {
                       postData();
                     },
                     child: Text('Post Data'),
+                  ),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    },
+                    child: Text('Go to Login'),
                   ),
                 ],
               ),

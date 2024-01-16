@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:schemeapp/screens/admin/admin_post.dart';
 // import 'package:scheme_app/components/dropdown.dart';
 // import 'package:scheme_app/controller/profile_controller.dart';
 // import 'package:scheme_app/dump/pro_cont.dart';
@@ -10,19 +11,20 @@ import 'package:schemeapp/screens/user/home.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: EditProfile(),
+    home: AdminScheme(),
   ));
 }
 
-class EditProfile extends StatelessWidget {
-  EditProfile({super.key});
+class AdminScheme extends StatelessWidget {
+  AdminScheme({super.key});
 
-  final ProfileController _profileController = ProfileController();
+  final AdminSchemeController _adminSchemeController = AdminSchemeController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.green[300],
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 8),
         height: double.infinity,
@@ -42,7 +44,7 @@ class EditProfile extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        "Edit Profile",
+                        "Admin page",
                         style: TextStyle(
                             letterSpacing: 1.1,
                             fontSize: 30,
@@ -52,7 +54,9 @@ class EditProfile extends StatelessWidget {
                       height: 50,
                       width: double.maxFinite,
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
@@ -62,10 +66,10 @@ class EditProfile extends StatelessWidget {
                         style: TextStyle(
                           color: Color(0xff080414),
                         ),
-                        controller: _profileController.addressController,
+                        controller: _adminSchemeController.nameController,
                         decoration: InputDecoration(
                           isDense: true,
-                          labelText: 'Address',
+                          labelText: 'Scheme Name',
                         ),
                       ),
                     ),
@@ -76,10 +80,10 @@ class EditProfile extends StatelessWidget {
                         color: Colors.white70,
                       ),
                       child: TextField(
-                        controller: _profileController.stateController,
+                        controller: _adminSchemeController.typeController,
                         decoration: InputDecoration(
                           isDense: true,
-                          labelText: 'State',
+                          labelText: 'Type',
                         ),
                       ),
                     ),
@@ -90,59 +94,11 @@ class EditProfile extends StatelessWidget {
                         color: Colors.white70,
                       ),
                       child: TextField(
-                        controller: _profileController.pincodeController,
+                        controller: _adminSchemeController.startageController,
                         decoration: InputDecoration(
                           isDense: true,
-                          labelText: 'Pincode',
+                          labelText: 'Start age',
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white70,
-                      ),
-                      child: DropdownTextField(
-                        controller: _profileController.professionController,
-                        items: _profileController.jobList,
-                        hintText: 'Profession',
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white70,
-                      ),
-                      child: DropdownTextField(
-                        controller: _profileController.cardController,
-                        items: _profileController.card,
-                        hintText: 'Card',
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white70,
-                      ),
-                      child: DropdownTextField(
-                        controller: _profileController.qualController,
-                        items: _profileController.qual,
-                        hintText: 'Qualification',
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white70,
-                      ),
-                      child: DropdownTextField(
-                        controller: _profileController.disableController,
-                        items: _profileController.disable,
-                        hintText: 'Disability',
                       ),
                     ),
                     SizedBox(height: 16),
@@ -152,12 +108,11 @@ class EditProfile extends StatelessWidget {
                         color: Colors.white70,
                       ),
                       child: TextField(
-                        controller: _profileController.aadharController,
+                        controller: _adminSchemeController.endageController,
                         decoration: InputDecoration(
                           isDense: true,
-                          labelText: 'Aadhar Number',
+                          labelText: 'End age',
                         ),
-                        obscureText: false,
                       ),
                     ),
                     SizedBox(height: 16),
@@ -167,24 +122,39 @@ class EditProfile extends StatelessWidget {
                         color: Colors.white70,
                       ),
                       child: TextField(
-                        controller: _profileController.contactController,
+                        controller:
+                            _adminSchemeController.descriptionController,
                         decoration: InputDecoration(
                           isDense: true,
-                          labelText: 'Contact',
+                          labelText: 'Description',
                         ),
-                        obscureText: false,
                       ),
                     ),
+                    SizedBox(height: 16),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white70,
+                      ),
+                      child: TextField(
+                        controller: _adminSchemeController.linkController,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          labelText: 'Link',
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 16),
                     SizedBox(height: 32),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: GestureDetector(
-                        onTap: () => _profileController.putData(context),
+                        onTap: () => _adminSchemeController.postData(context),
                         child: Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(12),
                           child: Text(
-                            "Done",
+                            "Add Scheme",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,
