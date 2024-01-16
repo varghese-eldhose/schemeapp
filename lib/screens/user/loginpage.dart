@@ -137,8 +137,10 @@ import 'package:http/http.dart' as http;
 import 'package:schemeapp/screens/user/Siginpage.dart';
 import 'package:schemeapp/screens/user/home.dart';
 import 'package:schemeapp/screens/user/homepage.dart';
+import 'package:schemeapp/screens/user/profiledisplay.dart';
 import 'package:schemeapp/service/filter_scheme_serrvice.dart';
-import 'package:schemeapp/views/scheme.dart';
+// import 'package:schemeapp/views/scheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -161,14 +163,20 @@ class _LoginPageState extends State<LoginPage> {
     if (response.statusCode == 200) {
       var responseMap = jsonDecode(response.body);
       String accessToken = responseMap['access'];
+      int user_id = responseMap['user_id'];
 
       print("accesssssstoken is :$accessToken");
+      print("userid is :$user_id");
       print(response.body);
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('accessToken', accessToken);
+      prefs.setInt('user_id', user_id);
 
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SchemePage(),
+          builder: (context) => Profile(),
         ),
       );
     } else {

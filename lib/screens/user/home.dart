@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:schemeapp/controller/control.dart';
 import 'package:schemeapp/model/model.dart';
+import 'package:schemeapp/screens/user/get_profile.dart';
 import 'package:schemeapp/screens/user/loginpage.dart';
+import 'package:schemeapp/screens/user/profiledisplay.dart';
 import 'package:schemeapp/views/Mysche.dart';
-import 'package:schemeapp/views/uu.dart';
+import 'package:schemeapp/views/profile_getView.dart';
+// import 'package:schemeapp/views/uu.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SchemePage extends StatelessWidget {
@@ -46,7 +49,7 @@ class SchemePage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     // MaterialPageRoute(builder: (context) => EditProfile()),
-                    MaterialPageRoute(builder: (context) => Profile()),
+                    MaterialPageRoute(builder: (context) => ProfileView()),
                   );
                 },
               ),
@@ -65,6 +68,15 @@ class SchemePage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SchemePage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.star),
+                title: Text('Profile', style: TextStyle(fontSize: 20)),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Profile()),
                   );
                 },
               ),
