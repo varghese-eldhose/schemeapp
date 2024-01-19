@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:schemeapp/service/filter_scheme_serrvice.dart';
-import 'package:schemeapp/service/service.dart';
 
 class FilterSchemeController extends GetxController {
   var flist = [].obs;

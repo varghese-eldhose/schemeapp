@@ -139,7 +139,6 @@ import 'package:schemeapp/screens/Adminpage.dart';
 import 'package:schemeapp/screens/admin/admin_schme_page.dart';
 import 'package:schemeapp/screens/user/Siginpage.dart';
 import 'package:schemeapp/screens/user/home.dart';
-import 'package:schemeapp/screens/user/homepage.dart';
 import 'package:schemeapp/screens/user/create_profile.dart';
 import 'package:schemeapp/service/filter_scheme_serrvice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -152,6 +151,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  bool _isPasswordVisible = false;
 
   void login() async {
     final response = await http.post(
@@ -166,10 +167,11 @@ class _LoginPageState extends State<LoginPage> {
       var responseMap = jsonDecode(response.body);
       String accessToken = responseMap['access'];
       int user_id = responseMap['user_id'];
+      
 
       print("accesssssstoken is :$accessToken");
       print("userid is :$user_id");
-      print(response.body);
+      print(response.body); 
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('accessToken', accessToken);
@@ -179,13 +181,7 @@ class _LoginPageState extends State<LoginPage> {
 
       print(response.body);
       if (_usernameController.text == 'admin' &&
-          _passwordController.text == 'admin')
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (context) => AdminScheme(),
-        //     ));
-        Get.to(AdminScheme());
+          _passwordController.text == 'admin') Get.to(AdminScheme());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -193,6 +189,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     }
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+    });
   }
 
   @override
@@ -211,9 +213,6 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // SizedBox(
-                //   height: 65,
-                // ),
                 Container(
                   alignment: Alignment.center,
                   color: Colors.grey[200],
@@ -231,10 +230,6 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 100,
                 ),
-                // TextField(
-                //   controller: _usernameController,
-                //   decoration: InputDecoration(labelText: 'Username'),
-                // ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
@@ -250,14 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
                 SizedBox(height: 16),
-                // TextField(
-                //   controller: _passwordController,
-                //   obscureText: true,
-                //   decoration: InputDecoration(labelText: 'Password'),
-                // ),
-                // SizedBox(height: 24),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
@@ -266,11 +254,20 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     style: TextStyle(color: Colors.white),
                     controller: _passwordController,
-                    obscureText: true,
+                    obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
                       isDense: true,
                       labelText: 'Password',
                       labelStyle: TextStyle(color: Colors.white),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.white,
+                        ),
+                        onPressed: _togglePasswordVisibility,
+                      ),
                     ),
                   ),
                 ),

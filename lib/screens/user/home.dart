@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:schemeapp/controller/control.dart';
 import 'package:schemeapp/model/model.dart';
-import 'package:schemeapp/screens/user/get_profile.dart';
 import 'package:schemeapp/screens/user/loginpage.dart';
-import 'package:schemeapp/screens/user/create_profile.dart';
+import 'package:schemeapp/screens/user/notifi_view.dart';
 import 'package:schemeapp/views/Mysche.dart';
+import 'package:schemeapp/views/newScheme.dart';
 import 'package:schemeapp/views/profile_getView.dart';
-// import 'package:schemeapp/views/uu.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SchemePage extends StatelessWidget {
@@ -35,11 +34,14 @@ class SchemePage extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
-                child: Text(
-                  'User Name', // Replace with the actual user name
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+                child: GestureDetector(
+                  onTap: () => "",
+                  child: Text(
+                    'User Name ', // Replace with the actual user name
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ),
@@ -68,6 +70,24 @@ class SchemePage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SchemePage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.star),
+                title: Text('New Scheme', style: TextStyle(fontSize: 20)),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => NewSchemePage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.star),
+                title: Text('Notifications', style: TextStyle(fontSize: 20)),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => NotificationViews()),
                   );
                 },
               ),
