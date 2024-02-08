@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-// import 'package:scheme_app/components/dropdown.dart';
-// import 'package:scheme_app/controller/profile_controller.dart';
-// import 'package:scheme_app/dump/pro_cont.dart';
+
 import 'package:schemeapp/screens/user/Siginpage.dart';
 import 'package:schemeapp/screens/user/profile_controller.dart';
-import 'package:schemeapp/screens/user/home.dart';
 
 void main() {
   runApp(MaterialApp(

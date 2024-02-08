@@ -77,33 +77,7 @@ class FilterSchemePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 5),
-                      // Container(
-                      //   child: Text('${scheme.description}'),
-                      // ),
-                      // GestureDetector(
-                      //   onTap: () {
-                      //     launchURL(scheme.link);
-                      //   },
-                      //   child: Text(
-                      //     '${scheme.link}',
-                      //     style: TextStyle(
-                      //       color: Colors.blue,
-                      //       decoration: TextDecoration.underline,
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(height: 5),
-                      // Container(
-                      //   width: 80,
-                      //   height: 35,
-                      //   child: Card(
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(20),
-                      //     ),
-                      //     shadowColor: const Color.fromARGB(255, 246, 16, 0),
-                      //     child: Center(child: Text('${scheme.schmeModelNew}')),
-                      //   ),
-                      // ),
+                     
 
                       SizedBox(height: 5),
                     ],

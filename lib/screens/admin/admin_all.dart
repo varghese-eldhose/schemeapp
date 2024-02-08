@@ -4,12 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:schemeapp/controller/control.dart';
 import 'package:schemeapp/model/model.dart';
-import 'package:schemeapp/screens/user/get_profile.dart';
-import 'package:schemeapp/screens/user/loginpage.dart';
-import 'package:schemeapp/screens/user/create_profile.dart';
-import 'package:schemeapp/views/Mysche.dart';
-import 'package:schemeapp/views/profile_getView.dart';
-// import 'package:schemeapp/views/uu.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AdminAllScheme extends StatelessWidget {

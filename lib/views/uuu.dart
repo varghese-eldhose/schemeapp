@@ -26,7 +26,16 @@ class _ProfilePageState extends State<Profile> {
   final TextEditingController qualController = TextEditingController();
   final TextEditingController disableController = TextEditingController();
 
-  List<String> profession = ['Farmer', 'Student', 'Disabled', 'Other'];
+  List<String> profession = [
+    'Farmer',
+    'Student',
+    'Disabled',
+    'Government Employ',
+    'Women',
+    'Teacher',
+    'Sports',
+    'Military',
+  ];
   // List<String> ageList = ['18-25', '26-35', '36-50', '51+'];
   List<String> card = ["Apl", "Bpl", "Aay"];
   List<String> qual = ["sslc", "Plus tow", "ug", "pg"];

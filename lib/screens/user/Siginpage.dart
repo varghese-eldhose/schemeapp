@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import 'package:schemeapp/screens/user/loginpage.dart';
 
@@ -24,21 +22,22 @@ class _MyHomePageState extends State<Siginup> {
   final TextEditingController ageController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
 
-  List<String> jobList = ['Farmer', 'Student', 'Disabled', 'Other'];
+  List<String> jobList = [
+    'Farmer',
+    'Student',
+    'Disabled',
+    'Government Employ',
+    'Women',
+    'Teacher',
+    'Sports',
+    'Military',
+  ];
   // List<String> ageList = ['18-25', '26-35', '36-50', '51+'];
   List<String> genderlist = ["Male", "Female"];
 
   Future<void> postData() async {
     final String url =
         'http://10.0.2.2:8000/AdminUI/register/'; // Replace with your API endpoint
-
-    // final Map<String, String> data = {
-    //   'username': usernameController.text,
-    //   'email': emailController.text,
-    //   'password': passwordController.text,
-    //   'profession': jobController.text,
-    //   'age': ageController.text,
-    // };
 
     final response = await http.post(
       Uri.parse(url),
@@ -104,12 +103,6 @@ class _MyHomePageState extends State<Siginup> {
                   SizedBox(
                     height: 90,
                   ),
-                  // TextField(
-                  //   controller: usernameController,
-                  //   decoration: InputDecoration(
-                  //       labelText: 'Username',
-                  //       labelStyle: TextStyle(color: Colors.black)),
-                  // ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
@@ -126,12 +119,6 @@ class _MyHomePageState extends State<Siginup> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // TextField(
-                  //   controller: emailController,
-                  //   decoration: InputDecoration(
-                  //       labelText: 'Email',
-                  //       labelStyle: TextStyle(color: Colors.black)),
-                  // ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
@@ -148,13 +135,6 @@ class _MyHomePageState extends State<Siginup> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // TextField(
-                  //   controller: passwordController,
-                  //   decoration: InputDecoration(
-                  //       labelText: 'Password',
-                  //       labelStyle: TextStyle(color: Colors.black)),
-                  //   obscureText: true,
-                  // ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
@@ -195,13 +175,6 @@ class _MyHomePageState extends State<Siginup> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // TextField(
-                  //   controller: ageController,
-                  //   decoration: InputDecoration(
-                  //       labelText: 'Age',
-                  //       labelStyle: TextStyle(color: Colors.black)),
-                  //   obscureText: false,
-                  // ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
@@ -222,7 +195,7 @@ class _MyHomePageState extends State<Siginup> {
                     onPressed: () {
                       postData();
                     },
-                    child: Text('Post Data'),
+                    child: Text('Sigin UP'),
                   ),
                   SizedBox(height: 16),
                   ElevatedButton(

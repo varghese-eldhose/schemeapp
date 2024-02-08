@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:schemeapp/screens/admin/admin_post.dart';
-// import 'package:scheme_app/components/dropdown.dart';
-// import 'package:scheme_app/controller/profile_controller.dart';
-// import 'package:scheme_app/dump/pro_cont.dart';
-import 'package:schemeapp/screens/user/Siginpage.dart';
-import 'package:schemeapp/screens/user/profile_controller.dart';
-import 'package:schemeapp/screens/user/home.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -19,6 +11,18 @@ class AdminScheme extends StatelessWidget {
   AdminScheme({super.key});
 
   final AdminSchemeController _adminSchemeController = AdminSchemeController();
+  final TextEditingController jobController = TextEditingController();
+
+  List<String> jobList = [
+    'Farmer',
+    'Student',
+    'Disabled',
+    'Government Employ',
+    'Women',
+    'Teacher',
+    'Sports',
+    'Military'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -79,12 +83,10 @@ class AdminScheme extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white70,
                       ),
-                      child: TextField(
-                        controller: _adminSchemeController.typeController,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          labelText: 'Type',
-                        ),
+                      child: DropdownTextField(
+                        controller: jobController,
+                        items: jobList,
+                        hintText: 'Select Job',
                       ),
                     ),
                     SizedBox(height: 16),
@@ -175,5 +177,46 @@ class AdminScheme extends StatelessWidget {
         ),
       ),
     ));
+  }
+}
+
+class DropdownTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final List<String> items;
+  final String hintText;
+
+  DropdownTextField({
+    Key? key,
+    required this.controller,
+    required this.items,
+    required this.hintText,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: Colors.white70,
+      ),
+      child: DropdownButtonFormField<String>(
+        value: controller.text.isEmpty ? null : controller.text,
+        onChanged: (newValue) {
+          if (newValue != null) {
+            controller.text = newValue;
+          }
+        },
+        items: items.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        decoration: InputDecoration(
+          isDense: true,
+          labelText: hintText,
+        ),
+      ),
+    );
   }
 }

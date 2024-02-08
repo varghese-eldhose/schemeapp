@@ -2,9 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:schemeapp/controller/filter_scheme_controller.dart';
 import 'package:schemeapp/controller/new_schem_controller.dart';
-import 'package:schemeapp/model/filterscheme.dart';
 import 'package:schemeapp/model/new_scheme_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 

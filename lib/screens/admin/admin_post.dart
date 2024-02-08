@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:schemeapp/screens/admin/admin_all.dart';
-import 'package:schemeapp/screens/user/home.dart';
 import 'package:http/http.dart' as http;
 
 class AdminSchemeController {

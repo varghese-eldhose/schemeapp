@@ -82,15 +82,15 @@ class SchemePage extends StatelessWidget {
                   );
                 },
               ),
-              ListTile(
-                leading: Icon(Icons.star),
-                title: Text('Notifications', style: TextStyle(fontSize: 20)),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => NotificationViews()),
-                  );
-                },
-              ),
+              // ListTile(
+              //   leading: Icon(Icons.star),
+              //   title: Text('Notifications', style: TextStyle(fontSize: 20)),
+              //   onTap: () {
+              //     Navigator.of(context).push(
+              //       MaterialPageRoute(builder: (context) => NotificationViews()),
+              //     );
+              //   },
+              // ),
               ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text('Logout', style: TextStyle(fontSize: 20)),
@@ -156,19 +156,7 @@ class SchemePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 5),
-                      // Container(
-                      //   width: 80,
-                      //   height: 35,
-                      //   child: Card(
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(20),
-                      //     ),
-                      //     shadowColor: const Color.fromARGB(255, 246, 16, 0),
-                      //     child: Center(
-                      //         child: Text('${scheme.schmeModelNew ?? ''}')),
-                      //   ),
-                      // ),
-                      // SizedBox(height: 5),
+                    
                     ],
                   ),
                 ),

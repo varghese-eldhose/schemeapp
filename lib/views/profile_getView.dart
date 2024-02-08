@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:schemeapp/model/profile_model.dart';
-import 'package:schemeapp/screens/user/Siginpage.dart';
 import 'package:schemeapp/screens/user/edit_profile.dart';
 import 'package:schemeapp/screens/user/profile_controller.dart';
-import 'package:schemeapp/screens/user/home.dart';
 import 'package:schemeapp/service/profile_dervice.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Import your profile model
+import 'package:shared_preferences/shared_preferences.dart'; 
+// Import your profile model
 
 class ProfileView extends StatefulWidget {
   @override
@@ -59,21 +58,7 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   Widget _buildProfileDetails(GetProfile profile) {
-    // return Column(
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     // Text('User ID: ${profile.user}'),
-    //     Text('Address: ${profile.address}'),
-    //     Text('State: ${profile.state}'),
-    //     Text('Pincode: ${profile.pincode}'),
-    //     Text('Profession: ${profile.profession}'),
-    //     Text('Card: ${profile.card}'),
-    //     Text('Qualification: ${profile.qual}'),
-    //     Text('Disabled: ${profile.disable}'),
-    //     Text('Aadhar Number: ${profile.aadharNumber}'),
-    //     Text('Contact: ${profile.contact}'),
-    //   ],
-    // );
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8),
       height: double.infinity,
@@ -155,18 +140,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // Container(
-                  //   padding: EdgeInsets.symmetric(horizontal: 10),
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.white70,
-                  //   ),
-                  //   child: DropdownTextField(
-                  //     controller: _profileController.professionController,
-                  //     items: _profileController.jobList,
-                  //     hintText: 'Profession: ${profile.profession}',
-                  //   ),
-                  // ),
-                  // SizedBox(height: 16),
+  
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -183,18 +157,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // Container(
-                  //   padding: EdgeInsets.symmetric(horizontal: 10),
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.white70,
-                  //   ),
-                  //   child: DropdownTextField(
-                  //     controller: _profileController.cardController,
-                  //     items: _profileController.card,
-                  //     hintText: 'Card: ${profile.card}',
-                  //   ),
-                  // ),
-                  // SizedBox(height: 16),
+                
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -211,18 +174,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // Container(
-                  //   padding: EdgeInsets.symmetric(horizontal: 10),
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.white70,
-                  //   ),
-                  //   child: DropdownTextField(
-                  //     controller: _profileController.qualController,
-                  //     items: _profileController.qual,
-                  //     hintText: 'Qualification: ${profile.qual}',
-                  //   ),
-                  // ),
-                  // SizedBox(height: 16),
+                
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -239,18 +191,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // Container(
-                  //   padding: EdgeInsets.symmetric(horizontal: 10),
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.white70,
-                  //   ),
-                  //   child: DropdownTextField(
-                  //     controller: _profileController.disableController,
-                  //     items: _profileController.disable,
-                  //     hintText: 'Disability: ${profile.disable}',
-                  //   ),
-                  // ),
-                  // SizedBox(height: 16),
+               
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
