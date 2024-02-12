@@ -82,15 +82,15 @@ class SchemePage extends StatelessWidget {
                   );
                 },
               ),
-              // ListTile(
-              //   leading: Icon(Icons.star),
-              //   title: Text('Notifications', style: TextStyle(fontSize: 20)),
-              //   onTap: () {
-              //     Navigator.of(context).push(
-              //       MaterialPageRoute(builder: (context) => NotificationViews()),
-              //     );
-              //   },
-              // ),
+              ListTile(
+                leading: Icon(Icons.star),
+                title: Text('Notifications', style: TextStyle(fontSize: 20)),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => NotificationViews()),
+                  );
+                },
+              ),
               ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text('Logout', style: TextStyle(fontSize: 20)),
