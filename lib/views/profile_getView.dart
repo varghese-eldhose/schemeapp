@@ -5,7 +5,7 @@ import 'package:schemeapp/model/profile_model.dart';
 import 'package:schemeapp/screens/user/edit_profile.dart';
 import 'package:schemeapp/screens/user/profile_controller.dart';
 import 'package:schemeapp/service/profile_dervice.dart';
-import 'package:shared_preferences/shared_preferences.dart'; 
+import 'package:shared_preferences/shared_preferences.dart';
 // Import your profile model
 
 class ProfileView extends StatefulWidget {
@@ -45,7 +45,9 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[200],
       appBar: AppBar(
+        backgroundColor: Colors.green[200],
         title: Text('Profile Details'),
       ),
       body: Padding(
@@ -58,7 +60,6 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   Widget _buildProfileDetails(GetProfile profile) {
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8),
       height: double.infinity,
@@ -104,7 +105,6 @@ class _ProfileViewState extends State<ProfileView> {
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2),
-                      // controller: _profileController.addressController,
                     ),
                   ),
                   SizedBox(height: 16),
@@ -140,7 +140,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-  
+
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -148,7 +148,7 @@ class _ProfileViewState extends State<ProfileView> {
                       color: Colors.white70,
                     ),
                     child: Text(
-                      'Profession: ${profile.profession}',
+                      'Category: ${profile.profession}',
                       style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
@@ -157,7 +157,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-                
+
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -174,7 +174,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-                
+
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -191,7 +191,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   SizedBox(height: 16),
-               
+
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -261,7 +261,6 @@ class _ProfileViewState extends State<ProfileView> {
                       ),
                     ),
                   ),
-                  // InkWell(onTap: () => Get.to(SchemePage()), child: Text("Skip"))
                 ],
               ),
             ),

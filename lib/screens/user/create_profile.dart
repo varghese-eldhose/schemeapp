@@ -19,6 +19,7 @@ class CreateProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.green[200],
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 8),
         height: double.infinity,
@@ -48,8 +49,29 @@ class CreateProfile extends StatelessWidget {
                       height: 50,
                       width: double.maxFinite,
                     ),
-                    SizedBox(
-                      height: 20,
+                    SizedBox(height: 15),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.to(SchemePage()); // Navigate to another page
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 2),
+                        primary: Colors.grey, // Change button color to blue
+                      ),
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 200,
+                        child: Text(
+                          "Already Created",
+                          style: TextStyle(
+                            letterSpacing: 1.1,
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: 16),
                     Container(
@@ -105,7 +127,7 @@ class CreateProfile extends StatelessWidget {
                       child: DropdownTextField(
                         controller: _profileController.professionController,
                         items: _profileController.jobList,
-                        hintText: 'Profession',
+                        hintText: 'Category',
                       ),
                     ),
                     SizedBox(height: 16),
@@ -196,8 +218,8 @@ class CreateProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    InkWell(
-                        onTap: () => Get.to(SchemePage()), child: Text("Skip"))
+                    // InkWell(
+                    //     onTap: () => Get.to(SchemePage()), child: Text("Skip"))
                   ],
                 ),
               ),

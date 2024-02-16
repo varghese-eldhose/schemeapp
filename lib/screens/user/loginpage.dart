@@ -31,8 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       var responseMap = jsonDecode(response.body);
       String accessToken = responseMap['access'];
       int user_id = responseMap['user_id'];
-       
-  
+
       print("accesssssstoken is :$accessToken");
       print("userid is :$user_id");
       print(response.body);
@@ -40,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('accessToken', accessToken);
       prefs.setInt('user_id', user_id);
-      
+
       print(response.body);
       if (_usernameController.text == 'admin' &&
           _passwordController.text == 'admin') {

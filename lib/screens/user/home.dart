@@ -11,7 +11,12 @@ import 'package:schemeapp/views/newScheme.dart';
 import 'package:schemeapp/views/profile_getView.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SchemePage extends StatelessWidget {
+class SchemePage extends StatefulWidget {
+  @override
+  State<SchemePage> createState() => _SchemePageState();
+}
+
+class _SchemePageState extends State<SchemePage> {
   final SchemeController schemeController = Get.put(SchemeController());
 
   @override
@@ -59,6 +64,7 @@ class SchemePage extends StatelessWidget {
                 leading: Icon(Icons.star),
                 title: Text('Scheme', style: TextStyle(fontSize: 20)),
                 onTap: () {
+                  setState(() {});
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => FilterSchemePage()),
                   );
@@ -87,7 +93,8 @@ class SchemePage extends StatelessWidget {
                 title: Text('Notifications', style: TextStyle(fontSize: 20)),
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => NotificationViews()),
+                    MaterialPageRoute(
+                        builder: (context) => NotificationViews()),
                   );
                 },
               ),
@@ -156,7 +163,6 @@ class SchemePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 5),
-                    
                     ],
                   ),
                 ),

@@ -86,7 +86,7 @@ class AdminScheme extends StatelessWidget {
                       child: DropdownTextField(
                         controller: jobController,
                         items: jobList,
-                        hintText: 'Select Job',
+                        hintText: 'Category',
                       ),
                     ),
                     SizedBox(height: 16),
