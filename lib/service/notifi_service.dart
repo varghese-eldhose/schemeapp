@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:http/http.dart' as https;
-import 'package:schemeapp/model/notifi_model.dart';
 
 class HttpNotifiScheme {
   static Future<dynamic> notificationscheme() async {
